@@ -24,7 +24,6 @@ let Bottom = function(dialog, parentDiv) {
     }
 
     function addClose(div, item) {
-        console.log('addClose');
         let button = document.createElement('button');
         div.appendChild(button);
         Tools.addClass(button, 'dialog-cl-btn');
