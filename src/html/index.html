@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <link rel="shortcut icon" href="../img/favicon.ico" /> -->
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <style>
+    div {
+      box-sizing: border-box;
+    }
+  </style>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+
+<script>
+    window.onload = function() {
+
+      let dialog = new Dialog({
+          'resize': 'both',
+          'addClass': 'my-dialog-class',
+          'titleBarButtons': [
+              {type: 'custom', contents: '<span class="icons-cl icons-cl-play">',
+                click: function() {console.log('click')} },
+              {type: 'close'}
+              ],
+          'content': '<p>Dialog box contents</p>'
+      });
+
+      dialog.addContent('<p>Added content</p>');
+
+      let p = document.createElement('p');
+      p.innerHTML = 'And even more...';
+      dialog.addContent(p);
+    }
+
+</script>
+<button onclick="console.log('clicked')">Test</button>
+
+</body>
+
+</html>
