@@ -19,7 +19,7 @@ let Mask = function(dialog) {
         mask.style.width = "100%";
         mask.style.height = '100%';
         mask.style.backgroundColor = 'transparent';
-        mask.style.zIndex = 10000;
+        mask.style.zIndex = dialog.zIndex - 1;
 
         body.appendChild(mask);
     }

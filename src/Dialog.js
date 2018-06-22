@@ -12,18 +12,20 @@ import Resizer from 'resizer-cl';
 import Mask from './Mask.js';
 
 let Dialog = function(options) {
-console.log('Dialog');
-
     options = new Options(options);
     this.options = options;
 
     let body = null, mask = null;
 
     let initialize = () => {
+        Dialog.zIndex += 2;
+        this.zIndex = Dialog.zIndex;
+
         let div = Tools.createClassedDiv('dialog-cl');
         Tools.addClasses(div, options.addClass);
 
         this.div = div;
+        div.style.zIndex = this.zIndex;
 
         let parent = document.querySelector('body');
         parent.appendChild(div);
@@ -104,6 +106,8 @@ console.log('Dialog');
         this.div.parentNode.removeChild(this.div);
     }
 }
+
+Dialog.zIndex = 10000;
 
 export default Dialog;
 
