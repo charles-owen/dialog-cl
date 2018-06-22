@@ -18,6 +18,7 @@ let TitleBar = function(dialog, parentDiv) {
     let initialize = () => {
         let html = `<h1>${options.title}</h1>`;
         let div = Tools.createClassedDiv('dialog-cl-top', html);
+        Tools.addClasses(div, options.titleBarAddClass);
         parentDiv.appendChild(div);
 
         if(options.titleBarButtons === null) {

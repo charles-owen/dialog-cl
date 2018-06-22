@@ -13,7 +13,8 @@ var Options = function(options) {
     /// Title bar text
     this.title = 'Dialog Box';
 
-    /// Any added class
+    /// Any added class or classes for the main dialog box div
+    /// Can be a string or multiple strings space delimited
     this.addClass = null;
 
     /// Is this dialog box resizable?
@@ -31,11 +32,16 @@ var Options = function(options) {
     ///   click: Click handler
     this.titleBarButtons = null;
 
+    /// Any added class or classes for the title bar div
+    /// Can be a string or multiple strings space delimited
+    this.titleBarAddClass = null;
+
     /// Array of buttons for the bottom.
-    /// If null, a close button is added automatically.
+    /// If null, an Ok button is added automatically.
     /// Otherwise, an array of objects, with these fields:
     ///   contents: If provided, HTML to place inside button tag
     ///   click: Click handler
+    ///   focus: true if we want to set focus on this button
     this.buttons = null;
 
     /// Content to add to the dialog box. If null, none is added on creation.

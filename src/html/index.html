@@ -17,12 +17,13 @@
 
       let dialog = new Dialog({
           'resize': 'both',
-          'addClass': 'my-dialog-class',
+          'addClass': 'my-dialog-class another-class',
           'titleBarButtons': [
               {type: 'custom', contents: '<span class="icons-cl icons-cl-play">',
                 click: function() {console.log('click')} },
               {type: 'close'}
               ],
+          'titleBarAddClass': "title-bar-class",
           'content': '<p>Dialog box contents</p>'
       });
 

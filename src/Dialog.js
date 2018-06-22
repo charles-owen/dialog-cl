@@ -12,6 +12,7 @@ import Resizer from 'resizer-cl';
 import Mask from './Mask.js';
 
 let Dialog = function(options) {
+console.log('Dialog');
 
     options = new Options(options);
     this.options = options;
@@ -20,9 +21,7 @@ let Dialog = function(options) {
 
     let initialize = () => {
         let div = Tools.createClassedDiv('dialog-cl');
-        if(options.addClass !== null) {
-            Tools.addClass(div, options.addClass);
-        }
+        Tools.addClasses(div, options.addClass);
 
         this.div = div;
 
@@ -31,14 +30,29 @@ let Dialog = function(options) {
 
         installResizable(div);
 
-
-
         new TitleBar(this, div);
         body = new Body(this, div);
         new Bottom(this, div);
         mask = new Mask(this);
 
         place(div, parent);
+
+        div.addEventListener('keydown', (event) => {
+            if (event.keyCode === 27) {
+                event.preventDefault();
+                this.close();
+            }
+        });
+
+        //
+        // Add cancel on ESC handler
+        // form.addEventListener("keyup", (event) => {
+        //     event.preventDefault();
+        //
+        //     if (event.keyCode === 27) {
+        //         this.close();
+        //     }
+        // });
     }
 
     let installResizable = (div) => {

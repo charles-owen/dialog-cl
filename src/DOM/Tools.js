@@ -20,6 +20,16 @@ Tools.addClass = function(element, className) {
         element.className += ' ' + className;
 }
 
+Tools.addClasses = function(element, classes) {
+    if(classes === undefined || classes === null) {
+        return;
+    }
+
+    classes.split(' ').forEach((cls) => {
+        Tools.addClass(element, cls);
+    });
+}
+
 /**
  * Create a DIV with a provided class name.
  * @param className Class to add to the div

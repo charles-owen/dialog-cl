@@ -15,7 +15,7 @@ let Bottom = function(dialog, parentDiv) {
         parentDiv.appendChild(div);
 
         if(options.buttons === null) {
-            addClose(div);
+            addOk(div);
         } else {
             options.buttons.forEach((item) => {
                 addButton(div, item);
@@ -23,32 +23,40 @@ let Bottom = function(dialog, parentDiv) {
         }
     }
 
-    function addClose(div, item) {
+    function addOk(div, item) {
         let button = document.createElement('button');
+        button.type = 'submit';
         div.appendChild(button);
         Tools.addClass(button, 'dialog-cl-btn');
-        button.innerHTML = 'Close';
+        button.innerHTML = 'Ok';
         button.onclick = (event) => {
             event.preventDefault();
             if(item !== undefined && item.click !== undefined) {
-                item.click();
+                item.click(dialog);
             } else {
                 dialog.close();
             }
         }
+
+        button.focus();
     }
 
 
     function addButton(div, item) {
         let button = document.createElement('button');
+        button.type = 'submit';
         div.appendChild(button);
         Tools.addClass(button, 'dialog-cl-btn');
         button.innerHTML = item.contents;
         button.onclick = (event) => {
             event.preventDefault();
             if(item !== undefined && item.click !== undefined) {
-                item.click();
+                item.click(dialog);
             }
+        }
+
+        if(item.focus === true) {
+            button.focus();
         }
     }
 
