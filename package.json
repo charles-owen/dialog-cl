@@ -53,6 +53,7 @@
     "webpack-merge": "^4.1.3"
   },
   "dependencies": {
+    "hoek": "^5.0.3",
     "icons-cl": "^0.1.3",
     "resizer-cl": "^2.3.0"
   }
