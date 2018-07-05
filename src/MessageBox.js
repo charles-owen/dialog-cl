@@ -2,13 +2,18 @@
  * Handy Simple Message Box
  */
 
+import Dialog from './Dialog.js';
+
 let MessageBox = function(title, message, type, button1, button2) {
     // Default: OK
     let buttons = [
         {
             contents: 'Ok',
             click: function(dialog) {
-                button1();
+                if(button1 !== undefined) {
+                    button1();
+                }
+
                 dialog.close()
             },
             'focus': true
@@ -20,7 +25,10 @@ let MessageBox = function(title, message, type, button1, button2) {
             {
                 contents: 'Ok',
                 click: function(dialog) {
-                    button1();
+                    if(button1 !== undefined) {
+                        button1();
+                    }
+
                     dialog.close()
                 },
                 'focus': true
@@ -28,7 +36,10 @@ let MessageBox = function(title, message, type, button1, button2) {
             {
                 contents: 'Cancel',
                 click: function(dialog) {
-                    button2();
+                    if(button2 !== undefined) {
+                        button2();
+                    }
+
                     dialog.close()
                 }
             }
