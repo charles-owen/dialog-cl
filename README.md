@@ -91,6 +91,38 @@ around to translating them eventually.
     this.modal = true;
 ```
 
+## MessageBox
+
+Sometimes you just need a simple message box for things like "Are you sure you want
+to delete" and such. The MesssageBox object allows for very simple message
+boxes. There are currently these options.
+
+### Ok Message Box
+
+``` javascript
+    new Dialog.MessageBox('This is important!',
+        'I am sure you are impressed',
+        Dialog.MessageBox.OK,
+        function() {
+          console.log('ok');
+        }
+    );
+```
+
+### Ok/Cancel Message Box
+
+``` javascript
+    new Dialog.MessageBox('Are you sure?',
+        'Are you sure you want to delete Lansing?',
+        Dialog.MessageBox.OKCANCEL,
+        function() {
+          console.log('ok');
+        },
+        function() {
+          console.log('cancel');
+        }
+    );
+```
 ## License
 
 Copyright 2016-2018 Michigan State University

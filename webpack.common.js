@@ -21,7 +21,12 @@ module.exports = {
             template: 'src/html/index.html',
             inject: 'head'
         }),
-        new webpack.NamedModulesPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Message Boxes',
+            filename: 'message.html',
+            template: 'src/html/message.html',
+            inject: 'head'
+        }),        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin([
             {
