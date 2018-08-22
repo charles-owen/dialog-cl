@@ -45,16 +45,6 @@ let Dialog = function(options) {
                 this.close();
             }
         });
-
-        //
-        // Add cancel on ESC handler
-        // form.addEventListener("keyup", (event) => {
-        //     event.preventDefault();
-        //
-        //     if (event.keyCode === 27) {
-        //         this.close();
-        //     }
-        // });
     }
 
     let installResizable = (div) => {
@@ -75,8 +65,10 @@ let Dialog = function(options) {
     }
 
     let place = (div, parent) => {
-        let parentWid = parent.offsetWidth;
-        let parentHit = parent.offsetHeight;
+        //let parentWid = parent.offsetWidth;
+        //let parentHit = parent.offsetHeight;
+        let parentWid = window.innerWidth;
+        let parentHit = window.innerHeight;
 
         let height = div.offsetHeight;
         let width = div.offsetWidth;

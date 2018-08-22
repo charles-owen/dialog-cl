@@ -1,6 +1,6 @@
 div.dialog-cl {
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     border: 1px solid #444444;
     background-color: white;
     margin: 0;
@@ -9,6 +9,7 @@ div.dialog-cl {
     flex-direction: column;
     flex-wrap: nowrap;
     cursor: default;
+    top: 0;
 
     width: 350px;
     min-width: 150px;
