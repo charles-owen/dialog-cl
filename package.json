@@ -51,7 +51,8 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
     "webpack-jquery-ui": "^1.0.0",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "cryptiles": ">=4.1.2"
   },
   "dependencies": {
     "icons-cl": "^0.1.3",
