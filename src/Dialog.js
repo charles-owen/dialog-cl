@@ -15,7 +15,7 @@ let Dialog = function(options) {
     options = new Options(options);
     this.options = options;
 
-    let body = null, mask = null;
+    let body = null, mask = null, bottom = null;
 
     let initialize = () => {
         Dialog.zIndex += 2;
@@ -34,7 +34,9 @@ let Dialog = function(options) {
 
         new TitleBar(this, div);
         body = new Body(this, div);
-        new Bottom(this, div);
+        if(options.buttons !== false) {
+	        bottom = new Bottom(this, div);
+        }
         mask = new Mask(this);
 
         place(div, parent);
@@ -45,16 +47,6 @@ let Dialog = function(options) {
                 this.close();
             }
         });
-
-        //
-        // Add cancel on ESC handler
-        // form.addEventListener("keyup", (event) => {
-        //     event.preventDefault();
-        //
-        //     if (event.keyCode === 27) {
-        //         this.close();
-        //     }
-        // });
     }
 
     let installResizable = (div) => {
@@ -75,8 +67,10 @@ let Dialog = function(options) {
     }
 
     let place = (div, parent) => {
-        let parentWid = parent.offsetWidth;
-        let parentHit = parent.offsetHeight;
+        //let parentWid = parent.offsetWidth;
+        //let parentHit = parent.offsetHeight;
+        let parentWid = window.innerWidth;
+        let parentHit = window.innerHeight;
 
         let height = div.offsetHeight;
         let width = div.offsetWidth;
@@ -104,6 +98,15 @@ let Dialog = function(options) {
     this.close = function() {
         mask.remove();
         this.div.parentNode.removeChild(this.div);
+    }
+
+	/**
+     * Calling is equivalent to pressing the first default button
+	 */
+	this.default = function() {
+        if(bottom !== null) {
+            bottom.default();
+        }
     }
 }
 

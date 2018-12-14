@@ -1,23 +1,26 @@
 $button-width: 7em;
 
-button.dialog-cl-btn {
-  display: inline-block;
-  min-width: $button-width;
-  margin: 10px 10px 10px 0;
-  padding: 3px 10px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size: 0.8em;
-  font-weight: bold;
-  border: 1px solid #999;
-  border-radius: 1px;
-  box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 -10px 20px rgba(0,0,0,.1);
-  cursor: pointer;
-  text-align: center;
-  outline: none;
-  color: #444;
-  background: #fff;
+div.cl-dialog-bottom {
+  button {
+    display: inline-block;
+    min-width: $button-width;
+    margin: 10px 10px 10px 0;
+    padding: 3px 10px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
+    border: 1px solid #999;
+    border-radius: 1px;
+    box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 -10px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #444;
+    background: #fff;
+  }
+
+  button:active {
+    box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 10px 20px rgba(0,0,0,.1);
+  }
 }
 
-button.dialog-cl-btn:active {
-  box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 10px 20px rgba(0,0,0,.1);
-}

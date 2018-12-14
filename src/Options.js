@@ -42,6 +42,7 @@ var Options = function(options) {
     ///   contents: If provided, HTML to place inside button tag
     ///   click: Click handler
     ///   focus: true if we want to set focus on this button
+    ///   default: true if this is the default button
     this.buttons = null;
 
     /// Content to add to the dialog box. If null, none is added on creation.
