@@ -10,8 +10,8 @@ let Bottom = function(dialog, parentDiv) {
     let options = dialog.options;
 
     let initialize = () => {
-        // let html = `<button class="dialog-cl-btn">Ok</button><button class="dialog-cl-btn">Cancel</button>`;
-        let div = Tools.createClassedDiv('dialog-cl-bot');
+        // let html = `<button class="cl-dialog-btn">Ok</button><button class="cl-dialog-btn">Cancel</button>`;
+        let div = Tools.createClassedDiv('cl-dialog-bottom');
         parentDiv.appendChild(div);
 
         if(options.buttons === null) {
@@ -27,7 +27,6 @@ let Bottom = function(dialog, parentDiv) {
         let button = document.createElement('button');
         button.type = 'submit';
         div.appendChild(button);
-        Tools.addClass(button, 'dialog-cl-btn');
         button.innerHTML = 'Ok';
         button.onclick = (event) => {
             event.preventDefault();
@@ -46,7 +45,6 @@ let Bottom = function(dialog, parentDiv) {
         let button = document.createElement('button');
         button.type = 'submit';
         div.appendChild(button);
-        Tools.addClass(button, 'dialog-cl-btn');
         button.innerHTML = item.contents;
         button.onclick = (event) => {
             event.preventDefault();
@@ -61,6 +59,14 @@ let Bottom = function(dialog, parentDiv) {
     }
 
     initialize();
+
+    this.default = function() {
+	    options.buttons.forEach((item) => {
+		    if(item.default === true && item.click !== undefined) {
+			    item.click(dialog);
+            }
+	    });
+    }
 }
 
 export default Bottom;

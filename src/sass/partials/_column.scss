@@ -1,0 +1,16 @@
+//
+// Standard dialog box style: single column of controls
+//
+
+div.dialog-cl-column {
+  text-align: center;
+
+  >div {
+    display: inline-block;
+    padding: 1.5em 0 2.0em 0;
+  }
+
+  select {
+    width: 100%;
+  }
+}
