@@ -31,7 +31,7 @@
     "cryptiles": ">=4.1.2",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "hoek": "^5.0.4",
+    "hoek": "^6.1.2",
     "html-webpack-include-assets-plugin": "^1.0.6",
     "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "^3.3.0",
@@ -55,6 +55,6 @@
   },
   "dependencies": {
     "icons-cl": ">=1.0.4",
-    "resizer-cl": ">=2.3.0"
+    "resizer-cl": "~2.3.4"
   }
 }
