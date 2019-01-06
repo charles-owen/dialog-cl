@@ -1,11 +1,9 @@
+import Tools from './DOM/Tools';
+
 /**
- * @file
  * The bottom buttons section of the dialog box
+ * @constructor
  */
-
-import Tools from './DOM/Tools.js';
-
-
 let Bottom = function(dialog, parentDiv) {
     let options = dialog.options;
 
@@ -51,6 +49,10 @@ let Bottom = function(dialog, parentDiv) {
             if(item !== undefined && item.click !== undefined) {
                 item.click(dialog);
             }
+        }
+
+        if(item.class !== undefined) {
+            button.classList.add(item.class);
         }
 
         if(item.focus === true) {

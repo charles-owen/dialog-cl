@@ -1,8 +1,3 @@
-/**
- * @file
- * Flexible and configurable dialog box object
- */
-
 import Options from './Options.js';
 import TitleBar from './TitleBar.js';
 import Body from './Body.js';
@@ -11,6 +6,10 @@ import Tools from './DOM/Tools.js';
 import Resizer from 'resizer-cl';
 import Mask from './Mask.js';
 
+/**
+ * Flexible and configurable dialog box object
+ * @constructor
+ */
 let Dialog = function(options) {
     options = new Options(options);
     this.options = options;
