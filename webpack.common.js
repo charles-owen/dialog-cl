@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -14,7 +12,6 @@ module.exports = {
         hot: true
     },
     plugins: [
-        // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Dialog Box',
             filename: 'index.html',
@@ -26,7 +23,8 @@ module.exports = {
             filename: 'message.html',
             template: 'src/html/message.html',
             inject: 'head'
-        }),        new webpack.NamedModulesPlugin(),
+        }),
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin([
             {
@@ -48,8 +46,10 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-transform-runtime']
+                        "presets": [
+                            ["@babel/env"]
+                        ],
+                        plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-syntax-dynamic-import']
                     }
                 }
             },

@@ -8,7 +8,7 @@ module.exports = function (config) {
     config.set({
         webpack: webpackConfig,
         basePath: '',
-        frameworks: ['jasmine'],
+        frameworks: ['source-map-support', 'jasmine'],
         files: [
             'test/all.js'
         ],
