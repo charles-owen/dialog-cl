@@ -1,6 +1,6 @@
 {
   "name": "dialog-cl",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Flexible JavaScript dialog box",
   "main": "dist/dialog.js",
   "module": "src/app.modules.js",
