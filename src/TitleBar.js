@@ -5,12 +5,14 @@
 
 import Tools from './DOM/Tools.js';
 
-
-let TitleBar = function(dialog, parentDiv) {
+export function TitleBar(dialog, parentDiv) {
     let options = dialog.options;
 
-    /// Mouse move event handler
-    let installedMoveListener = null;
+    /// Mouse move event handlers installed flag
+    let installedMoveHandlers = false;
+
+    /// Touch move event handlers installed flag
+    let installedTouchHandlers = false;
 
     let initialX, initialY;
     let initialPositionX, initialPositionY;
@@ -36,17 +38,10 @@ let TitleBar = function(dialog, parentDiv) {
 
         let h1 = div.querySelector('h1');
 
-        h1.addEventListener('mousedown', (event) => {
-            initialX = event.pageX;
-            initialY = event.pageY;
-
-            let rect = dialog.div.getBoundingClientRect();
-            initialPositionX = rect.left;
-            initialPositionY = rect.top;
-
-            installHandlers();
-        });
+        h1.addEventListener('mousedown', mouseDownListener);
+        h1.addEventListener('touchstart', touchStartListener);
     }
+
 
 
     function addClose(div, item) {
@@ -80,14 +75,9 @@ let TitleBar = function(dialog, parentDiv) {
         }
     }
 
-    function mouseMoveListener(e) {
-        if(e.buttons !== 1) {
-            removeHandlers();
-            return;
-        }
-
-        let dx = e.pageX - initialX;
-        let dy = e.pageY - initialY;
+    function moveTo(x, y) {
+        let dx = x - initialX;
+        let dy = y - initialY;
 
         let newPositionX = initialPositionX + dx;
         let newPositionY = initialPositionY + dy;
@@ -96,29 +86,101 @@ let TitleBar = function(dialog, parentDiv) {
         dialog.div.style.top = newPositionY + 'px';
     }
 
+    //
+    // Mouse handlers
+    //
+
+    function installMouseHandlers() {
+        removeHandlers();
+
+        installedMoveHandlers = true;
+        document.addEventListener('mousemove', mouseMoveListener);
+        document.addEventListener('mouseup', mouseUpListener);
+    }
+
+
+    function mouseDownListener(event) {
+        initialX = event.pageX;
+        initialY = event.pageY;
+
+        let rect = dialog.div.getBoundingClientRect();
+        initialPositionX = rect.left;
+        initialPositionY = rect.top;
+
+        installMouseHandlers();
+    }
+
+    function mouseMoveListener(e) {
+        if(e.buttons !== 1) {
+            removeHandlers();
+            return;
+        }
+
+        moveTo(e.pageX, e.pageY);
+    }
+
     function mouseUpListener(e) {
         removeHandlers();
     }
 
-    function installHandlers() {
+    //
+    // Touch handlers
+    //
+
+    function installTouchHandlers() {
         removeHandlers();
 
-        installedMoveListener = mouseMoveListener;
-        document.addEventListener('mousemove', installedMoveListener);
-        document.addEventListener('mouseup', mouseUpListener);
+        installedTouchHandlers = true;
+        document.addEventListener('touchmove', touchMoveListener);
+        document.addEventListener('touchend', touchEndListener);
+        document.addEventListener('touchcancel', touchEndListener);
     }
 
+
+    function touchStartListener(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        initialX = event.touches[0].pageX;
+        initialY = event.touches[0].pageY;
+
+        let rect = dialog.div.getBoundingClientRect();
+        initialPositionX = rect.left;
+        initialPositionY = rect.top;
+
+        installTouchHandlers();
+    }
+
+
+    function touchMoveListener(e) {
+        e.stopPropagation();
+
+        moveTo(e.touches[0].pageX, e.touches[0].pageY);
+    }
+
+    function touchEndListener(e) {
+        removeHandlers();
+    }
+
+    /**
+     * Remove all installed temporary handlers
+     */
     function removeHandlers() {
-        if(installedMoveListener === null) {
-            return;
+        if(installedMoveHandlers) {
+
+            document.removeEventListener('mousemove', mouseMoveListener);
+            document.removeEventListener('mouseup', mouseUpListener);
+            installedMoveHandlers = false;
         }
 
-        document.removeEventListener('mousemove', installedMoveListener);
-        document.removeEventListener('mouseup', mouseUpListener);
-        installedMoveListener = null;
+        if(installedTouchHandlers) {
+            document.removeEventListener('touchmove', touchMoveListener);
+            document.removeEventListener('touchend', touchEndListener);
+            document.removeEventListener('touchcancel', touchEndListener);
+            installedTouchHandlers = false;
+        }
     }
 
     initialize();
 }
 
-export default TitleBar;

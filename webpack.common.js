@@ -24,21 +24,9 @@ module.exports = {
             template: 'src/html/message.html',
             inject: 'head'
         }),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new CopyWebpackPlugin([
-            {
-                from: 'src/img/*.png',
-                to: 'img',
-                flatten: true
-            },
-            {
-                from: 'src/img/*.ico',
-                to: 'img',
-                flatten: true
-            }
-        ])
-    ], module: {
+        new webpack.HotModuleReplacementPlugin()
+    ],
+    module: {
         rules: [
             {
                 test: /\.js$/,

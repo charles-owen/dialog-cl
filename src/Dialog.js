@@ -1,14 +1,17 @@
 import Options from './Options.js';
-import TitleBar from './TitleBar.js';
+import {TitleBar} from './TitleBar';
 import Body from './Body.js';
 import Bottom from './Bottom.js';
 import Tools from './DOM/Tools.js';
-import Resizer from 'resizer-cl';
 import Mask from './Mask.js';
+
+import Resizer from 'resizer-cl';
 
 /**
  * Flexible and configurable dialog box object
  * @constructor
+ *
+ * @version 1.0.4 Touch support for title bar dragging
  */
 let Dialog = function(options) {
     options = new Options(options);
