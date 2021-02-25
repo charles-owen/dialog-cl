@@ -125,7 +125,7 @@ boxes. There are currently these options.
 ```
 ## License
 
-Copyright 2016-2018 Michigan State University
+Copyright 2016-2018 Michigan States University
 
 dialog-cl is released under the MIT license.
 

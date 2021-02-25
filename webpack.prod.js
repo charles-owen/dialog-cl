@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require('path');
@@ -9,11 +9,7 @@ module.exports = merge(common, {
     mode: 'production',
     optimization: {
         minimizer: [
-            new TerserPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true  // Must be set to true if using source-maps in production
-            }),
+            new TerserPlugin(),
             new OptimizeCSSAssetsPlugin({})
         ]
     },

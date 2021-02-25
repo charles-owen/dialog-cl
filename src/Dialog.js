@@ -1,6 +1,6 @@
-import Options from './Options.js';
+import {Options} from './Options.js';
 import {TitleBar} from './TitleBar';
-import Body from './Body.js';
+import {Body} from './Body.js';
 import Bottom from './Bottom.js';
 import Tools from './DOM/Tools.js';
 import Mask from './Mask.js';
@@ -41,7 +41,7 @@ let Dialog = function(options) {
         }
         mask = new Mask(this);
 
-        place(div, parent);
+        place(div, options.parent);
 
         div.addEventListener('keydown', (event) => {
             if (event.keyCode === 27) {
@@ -68,11 +68,22 @@ let Dialog = function(options) {
         return '' + val + 'px';
     }
 
-    let place = (div, parent) => {
-        //let parentWid = parent.offsetWidth;
-        //let parentHit = parent.offsetHeight;
-        let parentWid = window.innerWidth;
-        let parentHit = window.innerHeight;
+    /**
+     * Place the dialog box centered in the parent.
+     * @param div Dialog box div
+     * @param parent Parent div
+     */
+    const place = (div, parent) => {
+        let parentWid;
+        let parentHit;
+
+        if(parent === null) {
+            parentWid = window.innerWidth;
+            parentHit = window.innerHeight;
+        } else {
+            parentWid = parent.offsetWidth;
+            parentHit = parent.offsetHeight;
+        }
 
         let height = div.offsetHeight;
         let width = div.offsetWidth;

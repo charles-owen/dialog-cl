@@ -16,13 +16,15 @@ module.exports = {
             title: 'Dialog Box',
             filename: 'index.html',
             template: 'src/html/index.html',
-            inject: 'head'
+            inject: 'head',
+            scriptLoading: 'blocking'
         }),
         new HtmlWebpackPlugin({
             title: 'Message Boxes',
             filename: 'message.html',
             template: 'src/html/message.html',
-            inject: 'head'
+            inject: 'head',
+            scriptLoading: 'blocking'
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
@@ -56,7 +58,12 @@ module.exports = {
                     'style-loader',
                     'css-loader',
                     'resolve-url-loader',
-                    'sass-loader?sourceMap'
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true,
+                        },
+                    }
                 ]
             },
             {

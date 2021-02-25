@@ -7,7 +7,7 @@
  * @param options User provided options that override the default values.
  * @constructor
  */
-var Options = function(options) {
+export const Options = function(options) {
     options = options ? options : {};
 
     /// Title bar text
@@ -52,6 +52,9 @@ var Options = function(options) {
     /// Is this a modal dialog box? If true, controls underneath are disabled.
     this.modal = true;
 
+    /// Specifies what element the dialog box should be centered in.
+    this.parent = null;
+
     for(var property in options) {
         if(options.hasOwnProperty(property)) {
             if(!this.hasOwnProperty(property)) {
@@ -62,7 +65,3 @@ var Options = function(options) {
     }
 
 }
-
-
-
-export default Options;
