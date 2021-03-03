@@ -3,7 +3,7 @@ import {TitleBar} from './TitleBar';
 import {Body} from './Body.js';
 import Bottom from './Bottom.js';
 import Tools from './DOM/Tools.js';
-import Mask from './Mask.js';
+import {Mask} from './Mask.js';
 
 import Resizer from 'resizer-cl';
 
@@ -12,12 +12,18 @@ import Resizer from 'resizer-cl';
  * @constructor
  *
  * @version 1.0.4 Touch support for title bar dragging
+ * @property {element} form Get the form DOM element (if used)
  */
 let Dialog = function(options) {
     options = new Options(options);
     this.options = options;
 
     let body = null, mask = null, bottom = null;
+    let form = null;
+
+    Object.defineProperties(this, {
+        form: {get: function() {return form}}
+    })
 
     let initialize = () => {
         Dialog.zIndex += 2;
@@ -34,21 +40,34 @@ let Dialog = function(options) {
 
         installResizable(div);
 
-        new TitleBar(this, div);
-        body = new Body(this, div);
+        let container = div;
+
+        if(options.form) {
+            // Create the optional surrounding form
+            form = document.createElement('form');
+            div.appendChild(form);
+
+            container = form;
+        }
+
+        new TitleBar(this, container);
+        body = new Body(this, container);
         if(options.buttons !== false) {
-	        bottom = new Bottom(this, div);
+	        bottom = new Bottom(this, container);
         }
         mask = new Mask(this);
 
         place(div, options.parent);
 
-        div.addEventListener('keydown', (event) => {
-            if (event.keyCode === 27) {
-                event.preventDefault();
-                this.close();
-            }
-        });
+        document.addEventListener('keydown', keydown, true);
+    }
+
+    const keydown = (event) => {
+        if (event.keyCode === 27) {
+            event.preventDefault()
+            event.stopPropagation()
+            this.close();
+        }
     }
 
     let installResizable = (div) => {
@@ -111,6 +130,7 @@ let Dialog = function(options) {
     this.close = function() {
         mask.remove();
         this.div.parentNode.removeChild(this.div);
+        document.removeEventListener('keydown', keydown, true);
     }
 
 	/**

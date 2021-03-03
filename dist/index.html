@@ -1,42 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <!-- <link rel="shortcut icon" href="../img/favicon.ico" /> -->
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-  <style>
-    div {
+<!doctype html><html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"/><style>div {
       box-sizing: border-box;
-    }
-  </style>
-  <title>Dialog Box</title>
-<script src="dialog.js"></script></head>
-<body>
+    }</style><title>Dialog Box</title><script src="dialog.min.js"></script></head><body><script>window.onload = function() {
+  let p = document.createElement('p');
+  let content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+  content += '<input type="text">'
+  p.innerHTML = content;
 
-<script>
-    window.onload = function() {
+  let dialog = new Dialog({
+      'resize': 'both',
+      'addClass': 'my-dialog-class another-class',
+      'titleBarButtons': [
+          {type: 'custom', contents: '<span class="icons-cl icons-cl-play">',
+            click: function() {console.log('click')} },
+          {type: 'close'}
+          ],
+      'titleBarAddClass': "title-bar-class",
+      'content': p
+  });
 
-      let dialog = new Dialog({
-          'resize': 'both',
-          'addClass': 'my-dialog-class another-class',
-          'titleBarButtons': [
-              {type: 'custom', contents: '<span class="icons-cl icons-cl-play">',
-                click: function() {console.log('click')} },
-              {type: 'close'}
-              ],
-          'titleBarAddClass': "title-bar-class",
-          'content': '<p>Dialog box contents</p>'
-      });
+  // dialog.addContent('<p>Added content</p>');
+  //
+  // dialog.addContent(p);
+}
 
-      dialog.addContent('<p>Added content</p>');
+var cnt = 0;
+function count() {
+  cnt++;
+  document.getElementById('cnt').innerText = cnt;
+}
 
-      let p = document.createElement('p');
-      p.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-      dialog.addContent(p);
-    }
-
-</script>
-<button onclick="console.log('clicked')">Test</button>
-
-</body>
-
-</html>
+const body = document.getElementsByTagName('body')[0];
+body.addEventListener('keydown', function(event) {
+  document.getElementById('kp').innerText = event.keyCode;
+ // console.log(event.keyCode);
+})</script><p><button onclick="count()">Test</button> <span id="cnt">-</span></p><p><a href="message.html">Message box demo</a></p><p>Keypresses: <span id="kp"></span></p></body></html>

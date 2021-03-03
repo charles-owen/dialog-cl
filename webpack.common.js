@@ -5,11 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        Dialog: './src/app.modules.js'
-    },
-    devServer: {
-        contentBase: './dist',
-        hot: true
+        Dialog: './index.js'
     },
     plugins: [
         new HtmlWebpackPlugin({

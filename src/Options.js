@@ -55,6 +55,9 @@ export const Options = function(options) {
     /// Specifies what element the dialog box should be centered in.
     this.parent = null;
 
+    /// Should we add a form?
+    this.form = true;
+
     for(var property in options) {
         if(options.hasOwnProperty(property)) {
             if(!this.hasOwnProperty(property)) {

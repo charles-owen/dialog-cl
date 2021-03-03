@@ -4,7 +4,7 @@
  * Tools that avoid having to have jQuery installed.
  */
 
-let Tools = function() {
+export const Tools = function() {
 
 }
 

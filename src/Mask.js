@@ -4,7 +4,7 @@
 
 import Tools from './DOM/Tools.js';
 
-let Mask = function(dialog) {
+export const Mask = function(dialog) {
     let options = dialog.options;
 
     let mask = null;
@@ -32,6 +32,4 @@ let Mask = function(dialog) {
         }
     }
 }
-
-export default Mask;
 

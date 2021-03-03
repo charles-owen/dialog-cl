@@ -12,5 +12,9 @@ module.exports = merge(common, {
         libraryTarget: 'umd',
         libraryExport: "default",
         publicPath: ''
+    },
+    devServer: {
+        host: 'localhost',
+        static: path.resolve(__dirname, 'dist')
     }
 });
