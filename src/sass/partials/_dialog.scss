@@ -18,5 +18,12 @@ div.dialog-cl {
     height: auto;
     min-height: 150px;
     max-height: 600px;
+
+    form {
+        max-height: 531px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 }
 
